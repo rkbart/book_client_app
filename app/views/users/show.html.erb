@@ -1,0 +1,38 @@
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">User Details</h1>
+
+  <div class="bg-white p-6 rounded-lg shadow mb-8">
+    <p class="mb-2">
+      <strong class="text-gray-700">Name:</strong>
+      <span class="text-gray-800"><%= @user["name"] %></span>
+    </p>
+
+    <p class="mb-2">
+      <strong class="text-gray-700">Email:</strong>
+      <span class="text-gray-800"><%= @user["email"] %></span>
+    </p>
+  </div>
+
+  <div class="bg-white p-6 rounded-lg shadow">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Books</h2>
+    
+    <% if @books.any? %>
+      <div class="grid gap-4 md:grid-cols-2">
+        <% @books.each do |book| %>
+          <div class="border border-gray-200 rounded-lg p-4 hover:shadow transition-shadow">
+            <p class="font-medium text-gray-800"><%= book["title"] %></p>
+            <p class="text-gray-600"><%= book["author"] %></p>
+            <span class="inline-block mt-2 px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
+              <%= book["category"]["name"] %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500">No books found</p>
+    <% end %>
+  </div>
+
+  <%= link_to 'Back to Users', users_path, 
+        class: "mt-6 inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors" %>
+</div>
