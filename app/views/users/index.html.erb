@@ -1,4 +1,4 @@
-<div class="max-w-6xl mx-auto px-4">
+<div class="max-w-6xl mx-auto px-4 -mt-16">
   <h1 class="text-3xl font-bold text-gray-800 mb-6">Users from API</h1>
 
   <ul class="space-y-2 mb-8">
@@ -8,7 +8,12 @@
           <%= link_to user["name"], user_path(user["id"]), class: "text-blue-600 hover:text-blue-800 font-medium" %>: 
           <span class="text-gray-600"><%= user["email"] %></span>
         </div>
-        <i class="fa-regular fa-trash-can text-gray-400 hover:text-red-500 cursor-pointer"></i>
+        <%= link_to user_path(user["id"]), 
+            method: :delete, 
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+            class: "text-red-600 hover:text-red-800 transition-colors" do %>
+          <i class="fa-regular fa-trash-can hover:text-red-500"></i>
+        <% end %>
       </li>
     <% end %>
   </ul>
